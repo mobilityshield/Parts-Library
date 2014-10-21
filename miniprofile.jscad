@@ -3,25 +3,25 @@
 // Licence: Creative Commons — Attribution and Share Alike 
 
 // Global variables
-var plength,Dhole,quality;
+var extrusionlength,Dhole,quality;
 var w = new Array();
 
 // Editable parameters
 function getParameterDefinitions() {
   return [
-	{ name: 'plength', caption: '<b>Thickness (mm):</b>', type: 'float', initial: 1.2 },
-	{ name: 'Dhole', caption: '<b>Hole diameter (mm):<b>', type: 'float', initial: 3.9 },
+	{ name: 'extrusionlength', caption: '<b>Length (mm):</b>', type: 'float', initial: 15 },
+	{ name: 'Dhole', caption: '<i>Hole diameter (mm):</i>', type: 'float', initial: 3.9 },
 	{ name: 'quality', type: 'choice',
       values: ["8","16","32"],
       captions: ["Low","Medium", "High"],
       caption: '<i>Quality:</i>',
-      initial: "8" }
+      initial: "16" }
   ];
 }
 
 function main(params) {
 	
-	plength = params.plength;	
+	extrusionlength = params.extrusionlength;	
 	Dhole = params.Dhole; 
 	quality = params.quality;
 
@@ -36,7 +36,7 @@ function main(params) {
 	w.push( drill );
 	
 	return	[ 	color([0,0.65,1],
-					linear_extrude({height: plength},
+					linear_extrude({height: extrusionlength},
 						profile.subtract(w)
 					)
 				)
